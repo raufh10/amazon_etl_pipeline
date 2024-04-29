@@ -1,0 +1,7 @@
+# Ignore Directories gitingore
+old_data/
+venv/
+
+# Ignore Files gitingore
+notes.txt
+amazon_etl_pipeline.code-workspace
