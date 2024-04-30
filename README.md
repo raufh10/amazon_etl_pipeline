@@ -17,6 +17,34 @@ Here are picture of pipeline architecture:
 
 ![ETL Pipeline Architecture](images/etl_pipeline_architecture.png)
 
+The ETL pipeline consists of the following steps:
+
+### Extract
+
+This Python script automates the extraction of products data from Amazon. It navigates to specific best seller page URLs  and extracts details such as asin, price, and its rank. The extracted data is temporarily stored for further processing. The script uses `BeautifulSoup` for HTML parsing and `playwright.sync_api` for browser automation to efficiently handle web data extraction.
+
+### Transform
+
+This Python script is designed to transform data related to products data from Amazon. Here's what it does:
+
+- *Clean Float Data*: This function loads product data from a JSON file, cleans and converts price and rating fields into float values, and then saves the updated data back to the same file.
+- *Clean Integer Data*: This function loads product data from a JSON file, cleans and converts offers (if applicable), rank, and rating volume fields into integer values, and then saves the updated data back to the same file.
+
+The script focuses on refining and enhancing data quality for better usability in data analysis or further data processing tasks. It uses JSON for data handling and incorporates custom functions to clean and organize the data effectively.
+
+### Load
+
+This Python script is tailored for loading job data into a NoSQL MongoDB database and managing post-load cleanup:
+
+- *Load Data*: Connects to MongoDB using credentials, inserted data into the database.
+- *Cleanup*: Deletes the JSON file after loading data into the database.
+
+The script utilizes `pymongo` for database operations.
+
+### DAG Script for Apache Airflow
+
+You can also find a DAG script for Apache Airflow in the `dags` directory. The script is designed to automate the ETL pipeline by scheduling and orchestrating the execution of the individual scripts. The DAG script defines the sequence of tasks and their dependencies, ensuring the proper execution of the ETL pipeline.
+
 ## Opportunities for Improvement
 
 There are several opportunities for improvement in the ETL pipeline:
